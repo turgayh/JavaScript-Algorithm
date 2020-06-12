@@ -7,7 +7,7 @@ let defaultCompare = (a, b) =>
     Fixed memory
     Loops
 */
-let binarySearchWithLoops = (array, element, compare = defaultCompare) => {
+ export let binarySearchWithLoops = (array, element, compare = defaultCompare) => {
     let left = 0;
     let right = array.length - 1;
     
@@ -32,4 +32,18 @@ let binarySearchWithLoops = (array, element, compare = defaultCompare) => {
     return -1;
 };
 
-module.exports = binarySearchWithLoops;
+
+  export let binarySearchWithRecursion = (array, element, compare = defaultCompare, right = array.length - 1,left  = 0) => {
+    if(left > right)
+        return -1
+    let middle = Math.floor((right + left ) / 2)
+    if(array[middle] == element)
+        return middle
+    if(compare(element, array[middle])  ===  1 )
+        return binarySearchWithRecursion(array, element, compare = defaultCompare, right, middle+1)
+    
+    if(compare(element, array[middle])  ===  -1 )
+        return binarySearchWithRecursion(array, element, compare = defaultCompare, middle - 1,left)
+    
+}
+
