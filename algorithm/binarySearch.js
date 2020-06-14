@@ -67,5 +67,25 @@ export let binarySearchWithTail = (array, element, compare = defaultCompare ,lef
 
 
 
+export let binarySearchWithArraySplitting = (array, element, compare = defaultCompare) => {
+    if(array.length === 0) return -1
+
+    let middle = Math.floor(array.length / 2)
+    const comparison = compare(element,array[middle]);
+    if(comparison === 0)
+        return middle
+
+    const [left,right] = comparison === -1
+    ? [0 , middle - 1]
+    : [middle + 1 , array.length];
+
+    const index =  binarySearchWithArraySplitting(array.slice(left,right),element,compare = defaultCompare)
+    return index === -1
+    ? -1
+    : left + index;
+    
+}
+
+
 
 
